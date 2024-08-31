@@ -12,6 +12,13 @@ class Library {
         isAvailable: true
       });
     }
+
+    borrowBook(isbn) {
+        const book = this.books.find(book => book.isbn === isbn);
+        if (book && book.isAvailable) {
+          book.isAvailable = false;
+        }
+      }
     
   
   }
