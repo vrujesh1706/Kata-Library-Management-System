@@ -21,6 +21,22 @@ describe('Library Management System', function() {
       });
     });
   });
+
+
+  describe('#borrowBook()', function() {
+    it('should mark a book as borrowed', function() {
+      library.addBook('12345', 'Node.js in Action', 'Author A', 2024);
+      library.borrowBook('12345');
+      expect(library.books[0].isAvailable).to.be.false;
+    });
+
+    it('should not borrow a book that is not available', function() {
+      library.addBook('12345', 'Node.js in Action', 'Author A', 2024);
+      library.borrowBook('12345');
+      library.borrowBook('12345');
+      expect(library.books[0].isAvailable).to.be.false;
+    });
+  });
   
 
 });
