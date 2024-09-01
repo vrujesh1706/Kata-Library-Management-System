@@ -19,6 +19,13 @@ class Library {
           book.isAvailable = false;
         }
       }
+
+    returnBook(isbn) {
+        const book = this.books.find(book => book.isbn === isbn);
+        if (book && !book.isAvailable) {
+          book.isAvailable = true;
+        }
+      }
     
   
   }
