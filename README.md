@@ -11,18 +11,18 @@ A simple Library Management System built using Test-Driven Development (TDD) in 
 
 ## Getting Started
 
--Follow these steps to set up the project locally.
+- Follow these steps to set up the project locally.
 
 ## Prerequisites
 
--node.js
--npm
+- **node.js**
+- **npm**
 
 ## Installation
 
--Clone the repository:
--Navigate to the project directory:
--Install dependencies:
+- **Clone the repository:**
+- **Navigate to the project directory:**
+- **Install dependencies:** 
 
-##Running the Tests
--npm test
+## Running the Tests
+- **npm test**
