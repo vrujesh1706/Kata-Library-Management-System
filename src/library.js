@@ -7,15 +7,21 @@ class Library {
       if (!isbn || typeof isbn !== 'string' || isbn.trim() === '') {
         throw new Error('Invalid ISBN');
       }
+      if (!title || typeof title !== 'string' || title.trim() === '') {
+        throw new Error('Invalid title');
+      }
       if (this.books.some(book => book.isbn === isbn)) {
         throw new Error('Book with this ISBN already exists');
       }
       this.books.push({ isbn, title, author, publicationYear: year, isAvailable: true });
     }
   
-    borrowBook(isbn) {
+    borrowBook(isbn , title) {
       if (!isbn || typeof isbn !== 'string' || isbn.trim() === '') {
         throw new Error('Invalid ISBN');
+      }
+      if (!title || typeof title !== 'string' || title.trim() === '') {
+        throw new Error('Invalid title');
       }
       const book = this.books.find(book => book.isbn === isbn);
       if (!book) {
@@ -27,9 +33,12 @@ class Library {
       book.isAvailable = false;
     }
   
-    returnBook(isbn) {
+    returnBook(isbn , title) {
       if (!isbn || typeof isbn !== 'string' || isbn.trim() === '') {
         throw new Error('Invalid ISBN');
+      }
+      if (!title || typeof title !== 'string' || title.trim() === '') {
+        throw new Error('Invalid title');
       }
       const book = this.books.find(book => book.isbn === isbn);
       if (!book) {

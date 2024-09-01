@@ -25,7 +25,7 @@ describe("Library Management System", function () {
   describe("#borrowBook()", function () {
     it("should mark a book as borrowed", function () {
       library.addBook("12345", "Node.js in Action", "Author A", 2024);
-      library.borrowBook("12345");
+      library.borrowBook("12345" , "Node.js in Action");
       expect(library.books[0].isAvailable).to.be.false;
     });
 
@@ -35,8 +35,8 @@ describe("Library Management System", function () {
   describe("#returnBook()", function () {
     it("should mark a borrowed book as available", function () {
       library.addBook("12345", "Node.js in Action", "Author A", 2024);
-      library.borrowBook("12345");
-      library.returnBook("12345");
+      library.borrowBook("12345" , "Node.js in Action");
+      library.returnBook("12345" , "Node.js in Action");
       expect(library.books[0].isAvailable).to.be.true;
     });
   });
@@ -45,7 +45,7 @@ describe("Library Management System", function () {
     it("should return only available books", function () {
       library.addBook("12345", "Node.js in Action", "Author A", 2024);
       library.addBook("67890", "Learning JavaScript", "Author B", 2024);
-      library.borrowBook("12345");
+      library.borrowBook("12345", "Node.js in Action");
       const availableBooks = library.viewAvailableBooks();
       expect(availableBooks.length).to.equal(1);
       expect(availableBooks[0]).to.deep.equal({
@@ -61,7 +61,7 @@ describe("Library Management System", function () {
   describe('Sequential Operations of adding and borrowing books', function() {
     it('should correctly add and borrow books in sequence', function() {
       library.addBook('12345', 'Node.js in Action', 'Author A', 2024);
-      library.borrowBook('12345');
+      library.borrowBook('12345' , 'Node.js in Action');
       expect(library.books[0].isAvailable).to.be.false;
   
       library.addBook('67890', 'Learning JavaScript', 'Author B', 2023);
@@ -82,6 +82,21 @@ describe("Library Management System", function () {
       expect(() => library.returnBook('')).to.throw('Invalid ISBN');
     });
   });
+
+  describe('Handling Invalid Titles', function() {
+    it('should throw an error when adding a book with an invalid title', function() {
+      expect(() => library.addBook('12345', '', 'Author A', 2024)).to.throw('Invalid title');
+    });
+  
+    it('should throw an error when borrowing a book with an invalid title', function() {
+      expect(() => library.borrowBook('12345' , '')).to.throw('Invalid title');
+    });
+  
+    it('should throw an error when returning a book with an invalid title', function() {
+      expect(() => library.returnBook('12345' ,'')).to.throw('Invalid title');
+    });
+  });
+  
   
 
 
