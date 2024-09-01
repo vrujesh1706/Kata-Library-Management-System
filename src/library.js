@@ -26,7 +26,9 @@ class Library {
           book.isAvailable = true;
         }
       }
-    
+      viewAvailableBooks() {
+        return this.books.filter(book => book.isAvailable);
+      }
   
   }
   
