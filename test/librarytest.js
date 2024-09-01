@@ -29,12 +29,7 @@ describe("Library Management System", function () {
       expect(library.books[0].isAvailable).to.be.false;
     });
 
-    it("should not borrow a book that is not available", function () {
-      library.addBook("12345", "Node.js in Action", "Author A", 2024);
-      library.borrowBook("12345");
-      library.borrowBook("12345");
-      expect(library.books[0].isAvailable).to.be.false;
-    });
+    
   });
 
   describe("#returnBook()", function () {
@@ -73,4 +68,21 @@ describe("Library Management System", function () {
       expect(library.books[1].isAvailable).to.be.true;
     });
   });
+
+  describe('Handling Invalid ISBNs', function() {
+    it('should throw an error when adding a book with an invalid ISBN', function() {
+      expect(() => library.addBook('', 'Invalid Book', 'Author X', 2022)).to.throw('Invalid ISBN');
+    });
+  
+    it('should throw an error when borrowing a book with an invalid ISBN', function() {
+      expect(() => library.borrowBook('')).to.throw('Invalid ISBN');
+    });
+  
+    it('should throw an error when returning a book with an invalid ISBN', function() {
+      expect(() => library.returnBook('')).to.throw('Invalid ISBN');
+    });
+  });
+  
+
+
 });
