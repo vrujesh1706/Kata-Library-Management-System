@@ -62,4 +62,15 @@ describe("Library Management System", function () {
       });
     });
   });
+
+  describe('Sequential Operations of adding and borrowing books', function() {
+    it('should correctly add and borrow books in sequence', function() {
+      library.addBook('12345', 'Node.js in Action', 'Author A', 2024);
+      library.borrowBook('12345');
+      expect(library.books[0].isAvailable).to.be.false;
+  
+      library.addBook('67890', 'Learning JavaScript', 'Author B', 2023);
+      expect(library.books[1].isAvailable).to.be.true;
+    });
+  });
 });
