@@ -46,5 +46,20 @@ describe("Library Management System", function () {
     });
   });
 
-  
+  describe("#viewAvailableBooks()", function () {
+    it("should return only available books", function () {
+      library.addBook("12345", "Node.js in Action", "Author A", 2024);
+      library.addBook("67890", "Learning JavaScript", "Author B", 2024);
+      library.borrowBook("12345");
+      const availableBooks = library.viewAvailableBooks();
+      expect(availableBooks.length).to.equal(1);
+      expect(availableBooks[0]).to.deep.equal({
+        isbn: "67890",
+        title: "Learning JavaScript",
+        author: "Author B",
+        publicationYear: 2024,
+        isAvailable: true,
+      });
+    });
+  });
 });
